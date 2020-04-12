@@ -6,10 +6,10 @@ services:
             - applications-docker-sync:/var/www:nocopy
     php-fpm:
         volumes:
-          - applications-docker-sync:/var/www:nocopy
+            - applications-docker-sync:/var/www:nocopy
     nginx:
         volumes:
-          - applications-docker-sync:/var/www:nocopy
+            - applications-docker-sync:/var/www:nocopy
 
 volumes:
     applications-docker-sync:

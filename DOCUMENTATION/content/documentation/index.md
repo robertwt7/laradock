@@ -793,20 +793,20 @@ Read the [Laravel official documentation](https://laravel.com/docs/5.7/redis#con
 ## Use Varnish
 
 The goal was to proxy request to varnish server using nginx. So only nginx has been configured for Varnish proxy.
-Nginx is on port 80 or 443. Nginx sends request through varnish server and varnish server sends request back to nginx on port 81 (external port is defined in `VARNISH_BACKEND_PORT`). 
+Nginx is on port 80 or 443. Nginx sends request through varnish server and varnish server sends request back to nginx on port 81 (external port is defined in `VARNISH_BACKEND_PORT`).
 
-The idea was taken from this [post](https://www.linode.com/docs/websites/varnish/use-varnish-and-nginx-to-serve-wordpress-over-ssl-and-http-on-debian-8/) 
+The idea was taken from this [post](https://www.linode.com/docs/websites/varnish/use-varnish-and-nginx-to-serve-wordpress-over-ssl-and-http-on-debian-8/)
 
 The Varnish configuration was developed and tested for Wordpress only. Probably it works with other systems.
 
 #### Steps to configure varnish proxy server:
 1. You have to set domain name for VARNISH_PROXY1_BACKEND_HOST variable.
 2. If you want to use varnish for different domains, you have to add new configuration section in your env file.
-    ``` 
+    ```
     VARNISH_PROXY1_CACHE_SIZE=128m
     VARNISH_PROXY1_BACKEND_HOST=replace_with_your_domain.name
     VARNISH_PROXY1_SERVER=SERVER1
-    ``` 
+    ```
 3. Then you have to add new config section into docker-compose.yml with related variables:
     ```
     custom_proxy_name:
@@ -828,7 +828,7 @@ The Varnish configuration was developed and tested for Wordpress only. Probably 
             - workspace
           networks:
             - frontend
-    ``` 
+    ```
 4. change your varnish config and add nginx configuration. Example Nginx configuration is here: `nginx/sites/laravel_varnish.conf.example`.
 5. `varnish/default.vcl` is old varnish configuration, which was used in the previous version. Use `default_wordpress.vcl` instead.
 
@@ -846,14 +846,14 @@ run from any cli: <br>`curl -X PURGE https://yourwebsite.com/`.
 2. How to reload varnish?<br>
 `docker container exec proxy varnishreload`
 3. Which varnish commands are allowed?
-    - varnishadm     
-    - varnishd      
-    - varnishhist    
-    - varnishlog     
-    - varnishncsa    
-    - varnishreload  
-    - varnishstat    
-    - varnishtest    
+    - varnishadm
+    - varnishd
+    - varnishhist
+    - varnishlog
+    - varnishncsa
+    - varnishreload
+    - varnishstat
+    - varnishtest
     - varnishtop
 4. How to reload Nginx?<br>
 `docker exec Nginx nginx -t`<br>
@@ -2011,7 +2011,7 @@ To install Supervisor in the Workspace container
 
 3 - Create supervisor configuration file (for ex., named `laravel-worker.conf`) for Laravel Queue Worker in `php-worker/supervisord.d/` by simply copy from `laravel-worker.conf.example`
 
-4 - Re-build the container `docker-compose build workspace` Or `docker-composer up --build -d workspace` 
+4 - Re-build the container `docker-compose build workspace` Or `docker-composer up --build -d workspace`
 
 
 
