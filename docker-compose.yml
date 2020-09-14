@@ -352,8 +352,13 @@ services:
       depends_on:
         - php-fpm
       networks:
-        - frontend
-        - backend
+        frontend:
+          aliases:
+            - salt-backend.test
+            - voucher-microservice.test
+          backend:
+            - salt-backend.test
+            - voucher-microservice.test
 
 ### Blackfire ########################################
     blackfire:
