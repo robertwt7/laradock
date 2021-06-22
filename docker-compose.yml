@@ -356,7 +356,8 @@ services:
           aliases:
             - salt-backend.test
             - voucher-microservice.test
-          backend:
+        backend:
+          aliases:
             - salt-backend.test
             - voucher-microservice.test
 
